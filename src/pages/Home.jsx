@@ -72,11 +72,11 @@ const Home = () => {
 
   return (
     <div className="p-4">
-      <div className="flex items-center mb-4">
-        <div className="mr-4">
+      <div className="flex flex-wrap items-center mb-4">
+        <div className="w-full sm:w-auto sm:mr-4 mb-2 sm:mb-0">
           <label className="text-gray-600 font-semibold">Sort by Price:</label>
           <select
-            className="w-40 bg-gray-200 hover:bg-gray-300 text-gray-800 py-2 px-4 rounded-md shadow-md"
+            className="w-full sm:w-40 bg-gray-200 hover:bg-gray-300 text-gray-800 py-2 px-4 rounded-md shadow-md"
             value={sortByPrice}
             onChange={(e) => sortPostsByPrice(e.target.value)}
           >
@@ -85,12 +85,12 @@ const Home = () => {
           </select>
         </div>
 
-        <div className="mr-4">
+        <div className="w-full sm:w-auto sm:mr-4 mb-2 sm:mb-0">
           <label className="text-gray-600 font-semibold">
             Filter by Category:
           </label>
           <select
-            className="w-40 bg-gray-200 hover:bg-gray-300 text-gray-800 py-2 px-4 rounded-md shadow-md"
+            className="w-full sm:w-40 bg-gray-200 hover:bg-gray-300 text-gray-800 py-2 px-4 rounded-md shadow-md"
             value={selectedCategory}
             onChange={(e) => filterByCategory(e.target.value)}
           >
@@ -100,23 +100,30 @@ const Home = () => {
           </select>
         </div>
 
-        <input
-          type="number"
-          placeholder="Max Price"
-          className="w-40 bg-gray-200 hover:bg-gray-300 text-gray-800 py-2 px-4 rounded-md shadow-md"
-          value={maxPrice}
-          onChange={(e) => {
-            const value = e.target.value === '' ? '' : Math.max(0, parseFloat(e.target.value)); // Ensure the value is at least 0
-            setMaxPrice(value === '' ? '' : value.toString()); // Convert the value back to string or keep it as an empty string
-          }}
-        />
+        <div className="w-full sm:w-auto mb-2 sm:mb-0">
+          <input
+            type="number"
+            placeholder="Max Price"
+            className="w-full sm:w-40 bg-gray-200 hover:bg-gray-300 text-gray-800 py-2 px-4 rounded-md shadow-md"
+            value={maxPrice}
+            onChange={(e) => {
+              const value = e.target.value === '' ? '' : Math.max(0, parseFloat(e.target.value));
+              setMaxPrice(value === '' ? '' : value.toString());
+            }}
+          />
+        </div>
 
-        <button
-          onClick={handleRandomPick}
-          className="bg-gray-700 hover:bg-gray-800 text-white py-2 px-4 rounded-md shadow-md"
-        >
-          Random Pick
-        </button>
+        <div className="w-full sm:w-auto mb-2 sm:mb-0">
+          <button
+            onClick={handleRandomPick}
+            className="w-full bg-gray-800 hover:bg-gray-900 text-white py-2 px-4 rounded-md shadow-md"
+            style={{
+              fontSize: "0.875rem", // Smaller font size for mobile devices
+            }}
+          >
+            Random Pick
+          </button>
+        </div>
       </div>
 
       {randomlyPickedProduct && (
