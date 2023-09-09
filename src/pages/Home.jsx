@@ -62,6 +62,14 @@ const Home = () => {
     }
   };
 
+  // Case-insensitive category filtering
+  const filteredPosts =
+    selectedCategory === "all"
+      ? posts
+      : posts.filter((post) =>
+          post.category.toLowerCase() === selectedCategory.toLowerCase()
+        );
+
   return (
     <div className="p-4">
       <div className="flex items-center mb-4">
@@ -88,7 +96,7 @@ const Home = () => {
           >
             <option value="all">All</option>
             <option value="electronics">Electronics</option>
-            <option value="jewelery">Jewelery</option>
+            <option value="jewelery">Jewelry</option>
           </select>
         </div>
 
@@ -97,7 +105,10 @@ const Home = () => {
           placeholder="Max Price"
           className="w-40 bg-gray-200 hover:bg-gray-300 text-gray-800 py-2 px-4 rounded-md shadow-md"
           value={maxPrice}
-          onChange={(e) => setMaxPrice(e.target.value)}
+          onChange={(e) => {
+            const value = e.target.value === '' ? '' : Math.max(0, parseFloat(e.target.value)); // Ensure the value is at least 0
+            setMaxPrice(value === '' ? '' : value.toString()); // Convert the value back to string or keep it as an empty string
+          }}
         />
 
         <button
@@ -122,7 +133,7 @@ const Home = () => {
         <Spinner />
       ) : posts.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
-          {posts.map((post) => (
+          {filteredPosts.map((post) => (
             <Product key={post.id} post={post} />
           ))}
         </div>
