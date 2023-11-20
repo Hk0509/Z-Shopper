@@ -10,7 +10,7 @@ const Home = () => {
   const [sortByPrice, setSortByPrice] = useState("asc");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [randomlyPickedProduct, setRandomlyPickedProduct] = useState(null);
-  const [maxPrice, setMaxPrice] = useState(""); // State for maximum price input
+  const [maxPrice, setMaxPrice] = useState(""); 
 
   async function fetchProductData() {
     setLoading(true);
