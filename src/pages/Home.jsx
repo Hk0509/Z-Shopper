@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Spinner from "../components/Spinner";
 import Product from "../components/Product";
+import { toast } from "react-hot-toast";
 
 const Home = () => {
   const API_URL = "https://fakestoreapi.com/products";
@@ -53,16 +54,19 @@ const Home = () => {
       (post) => post.price <= parseFloat(maxPrice)
     );
 
-    if (filteredProducts.length === 0) {
+    if(filteredProducts.length === 0){
       setRandomlyPickedProduct(null); // No product within the specified price range
     } else {
       const randomIndex = Math.floor(Math.random() * filteredProducts.length);
       const randomProduct = filteredProducts[randomIndex];
       setRandomlyPickedProduct(randomProduct);
     }
+    if(maxPrice === ''){
+      toast.error("Max Price can't be NULL!!");
+    }
   };
 
-  // Case-insensitive category filtering
+  // Category filtering
   const filteredPosts =
     selectedCategory === "all"
       ? posts
