@@ -122,7 +122,7 @@ const Home = () => {
             onClick={handleRandomPick}
             className="w-full bg-gray-800 hover:bg-gray-900 text-white py-2 px-4 rounded-md shadow-md"
             style={{
-              fontSize: "0.875rem", // Smaller font size for mobile devices
+              fontSize: "0.875rem", 
             }}
           >
             Random Pick
